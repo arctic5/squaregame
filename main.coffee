@@ -16,7 +16,7 @@ class Entity
         console.log(@str)
         return @str
         
-Component = {
+Component = 
     health: (value) ->
         @name = "health"
         @value = value
@@ -39,10 +39,9 @@ Component = {
         @name = "draw"
     controllable: () ->
         @name = "controllable"
-}
 
-Sys = {
-    canvas: {
+Sys = 
+    canvas: 
         init: ->
             @canvas = document.getElementById('canvas')
             @ctx = @canvas.getContext('2d')
@@ -53,16 +52,16 @@ Sys = {
             @ctx.setTransform(1, 0, 0, 1, 0, 0)
             @ctx.clearRect(0, 0, @canvas.width, @canvas.height)
             @ctx.restore()
-    }
+    
     rendering: (ent)->
         if (ent.components.draw)
             Sys.canvas.clear()
             Sys.canvas.ctx.beginPath()
             Sys.canvas.ctx.fillRect(ent.components.physics.x,ent.components.physics.y,40,40)
-    input: {
+    input: 
         init: ->
             window.addEventListener('keydown', ((event) -> currentKey = event.keyCode), true)
-    }
+    
     playercontrol: (ent) ->
         if (ent.components.physics and ent.components.controllable)
             switch (currentKey)
@@ -86,7 +85,7 @@ Sys = {
         currentKey = null
         setTimeout((-> requestAnimationFrame(Sys.loop)), 1000 / 30)
     
-}
+    
     
 class Player
     constructor: () ->
